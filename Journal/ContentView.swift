@@ -63,7 +63,7 @@ struct DetailView: View {
     @State var clear = false
     
     var body: some View {
-        NavigationView {
+        Group {
             VStack {
                 PKCanvas(color: $color, clear: $clear)
                 HStack {
@@ -76,6 +76,8 @@ struct DetailView: View {
                     Button("Clear Canvas") { self.clear.toggle() }
                 }.padding()
             }
+        }
+            .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarTitle(
                 selectedDate != nil
                     ? Text("\(selectedDate!, formatter: dateFormatter)")
@@ -84,9 +86,8 @@ struct DetailView: View {
                 Button(action: {
                 }) {
                     Image(systemName: "square.and.arrow.up")
-                }.padding(0)
+                }
             })
-        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
